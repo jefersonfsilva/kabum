@@ -12,25 +12,25 @@ class ClassCrud extends ClassConnection{
         $this->crud->execute($exec);
     }
 
-    public function select($fields, $table, $where, $exec)
+    public function selectDB($fields, $table, $where, $exec)
     {
         $this->prepareExecute("select {$fields} from {$table} {$where}", $exec);
         return $this->crud;
     }
 
-    public function insert($table, $values, $exec)
+    public function insertDB($table, $values, $exec)
     {
         $this->prepareExecute("insert into {$table} values({$values})", $exec);
         return $this->crud;
     }
     
-    public function delete($table, $where, $exec)
+    public function deleteDB($table, $where, $exec)
     {
         $this->prepareExecute("delete from {$table} where {$where}", $exec);
         return $this->crud;
     }
 
-    public function update($table, $values, $where, $exec)
+    public function updateDB($table, $values, $where, $exec)
     {
         $this->prepareExecute("update {$table} set {$values} where {$where}", $exec);
         return $this->crud;

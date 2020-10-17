@@ -1,14 +1,18 @@
 <?= \Classes\ClassLayout::setHeader('Cadastro'); ?>
 
+    <div class="float w100 center">
+        Cadastro de Usuários
+    </div>
+
     <form namespace="formRegister" id="formRegister" action="<?= DIRPAGE.'controllers/controllerRegister'; ?>" method="post">
-        <div class="register">
-            <input type="text" id="nome" name="nome" placeholder="Nome" required>
-            <input type="text" id="email" name="email" placeholder="Email" required>
-            <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
-            <input type="text" id="dataNascimento" name="dataNascimento" placeholder="Data de nascimento" required>
-            <input type="password" id="senha" name="senha" placeholder="Senha" required>
-            <input type="password" id="senhaConf" name="senhaConf" placeholder="Confirmação de Senha" required>
-            <input type="submit" value="Cadastrar">
+        <div class="register float center">
+            <input class="float w100 h40" type="text" id="nome" name="nome" placeholder="Nome" required>
+            <input class="float w100 h40" type="text" id="email" name="email" placeholder="Email" required>
+            <input class="float w100 h40" type="text" id="cpf" name="cpf" placeholder="CPF" required>
+            <input class="float w100 h40" type="text" id="dataNascimento" name="dataNascimento" placeholder="Data de nascimento" required>
+            <input class="float w100 h40" type="password" id="senha" name="senha" placeholder="Senha" required>
+            <input class="float w100 h40" type="password" id="senhaConf" name="senhaConf" placeholder="Confirmação de Senha" required>
+            <input class="h40" type="submit" value="Cadastrar">
         </div>
     </form>
 
