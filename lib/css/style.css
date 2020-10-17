@@ -1,0 +1,115 @@
+/* Basic */
+*{
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+a{ text-decoration: none; color: #333; }
+a:hover{ opacity: 0.8; }
+
+
+/* Helpers */
+.float { float: left; }
+.w100 { width: 100%; }
+.h40 { height: 40px; }
+.txal { text-align: center; }
+
+
+/* General */
+input[type='email'],input[type='password']{
+    margin: 15px 0;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    font-size: 16px;
+    padding: 0 10px;
+}
+
+input[type='submit']{
+    width: 30%;
+    background: cornflowerblue;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+input[type='submit']:hover{
+    opacity: 0.8;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/kabum/img/login-bg-l.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+.login {
+    position: absolute;
+    width: 30%;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    padding: 30px;
+    
+}
+
+.loginTextos {
+    width: 70%;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+
+/* Extra small */
+@media screen and (max-width: 480px){
+    .login {
+        width: 80%;    
+    }
+    
+    .loginTextos {
+        width: 100%;
+        margin-top: 10px;
+        text-align: left;
+    }
+}
+
+/* Small */
+@media screen and  (min-width: 481px) and (max-width: 768px){
+    input[type='submit']{
+        width: 60%;
+    }
+    
+    .login {
+        width: 67%;
+    }
+    
+    .loginTextos {
+        width: 90%;
+        text-align: left;
+    }
+}
+
+/* Medium */
+@media screen and  (min-width: 769px) and (max-width: 1199px){
+    input[type='submit']{
+        width: 30%;
+    }
+    
+    .login {
+        width: 42%;
+        
+    }
+    
+    .loginTextos {
+        width: 70%;
+    }
+}
