@@ -31,4 +31,19 @@ class ClassRegister extends ClassCrud{
             )
         );
     }
+
+    #get email from DB
+    public function getIssetEmail($email)
+    {
+        $b = $this->selectDB(
+            "id",
+            "users",
+            "where email = ?",
+            array(
+                $email
+            )
+        );
+
+        return $r = $b->rowCount();
+    }
 }

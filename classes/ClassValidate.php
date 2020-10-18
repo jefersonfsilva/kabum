@@ -52,6 +52,27 @@ class ClassValidate {
         }
     }
 
+    public function validateIssetEmail($email, $action = null)
+    {
+        $b = $this->register->getIssetEmail($email);
+
+        if ($action == null) {
+            if ($b > 0) {
+                $this->setErr("Email já cadastrado");
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if ($b > 0) {
+                return true;
+            } else {
+                $this->setErr("Email não cadastrado");
+                return false;
+            }
+        }
+    }
+
     #validate date
     public function validateDate($par)
     {
