@@ -4,10 +4,12 @@
         Cadastro de Usuários
     </div>
 
+    <div class="returnCad"></div>
+
     <form namespace="formRegister" id="formRegister" action="<?= DIRPAGE.'controllers/controllerRegister'; ?>" method="post">
         <div class="register float center">
             <input class="float w100 h40" type="text" id="nome" name="nome" placeholder="Nome" required>
-            <input class="float w100 h40" type="text" id="email" name="email" placeholder="Email" required>
+            <input class="float w100 h40" type="email" id="email" name="email" placeholder="Email" required>
             <input class="float w100 h40" type="text" id="cpf" name="cpf" placeholder="CPF" required>
             <input class="float w100 h40" type="text" id="dataNascimento" name="dataNascimento" placeholder="Data de nascimento" required>
             <input class="float w100 h40" type="password" id="senha" name="senha" placeholder="Senha" required>

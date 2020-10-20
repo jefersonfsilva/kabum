@@ -6,10 +6,22 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitbef56ebbbc6444affb0eb3e93dbc6020
 {
+    public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'ZxcvbnPhp\\' => 10,
+        ),
         'T' => 
         array (
             'Traits\\' => 7,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
         ),
         'M' => 
         array (
@@ -22,9 +34,17 @@ class ComposerStaticInitbef56ebbbc6444affb0eb3e93dbc6020
     );
 
     public static $prefixDirsPsr4 = array (
+        'ZxcvbnPhp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bjeavons/zxcvbn-php/src',
+        ),
         'Traits\\' => 
         array (
             0 => __DIR__ . '/../..' . '/../traits',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
         'Models\\' => 
         array (

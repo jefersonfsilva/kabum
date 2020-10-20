@@ -2,15 +2,23 @@
 namespace Classes;
 
 use Models\ClassRegister;
+use Models\ClassLogin;
+use ZxcvbnPhp\Zxcvbn;
+use Classes\ClassPassword;
 
 class ClassValidate {
 
     private $err = [];
     private $register;
+    private $password;
+    private $login;
+    private $attempts;
 
     public function __construct()
     {
         $this->register = new ClassRegister();
+        $this->password = new ClassPassword();
+        $this->login = new ClassLogin();
     }
 
     public function getErr()
@@ -129,8 +137,90 @@ class ClassValidate {
         return $cpf{10} == ($resto < 2 ? 0 : 11 - $resto);
     }
 
+    #check if passwords are equal
+    public function validateConfPass($senha, $senhaConf)
+    {
+        if ($senha === $senhaConf) {
+            return true;
+        } else {
+            $this->setErr("Senhas não conferem");
+            return false;
+        }
+    }
+
+    #check if it is a goos password
+    public function validateStrongPass($senha, $par = null)
+    {
+        $zxcvbn = new Zxcvbn();
+        $strong = $zxcvbn->passwordStrength($senha);
+        
+        if ($par == null) {
+            if ($strong['score'] >= 3) {
+                return true;
+            } else {
+                $this->setErr("Use uma senha mais forte");
+                return false;
+            }
+        } else {
+            # login
+        }        
+    }
+
+    #check aginst DB
+    public function validatePass($email, $senha)
+    {
+        if ($this->password->verifyHash($email, $senha)) {
+            return true;
+        } else {
+            $this->setErr("Usuário ou senha inválida");
+            return false;
+        }
+    }
+
     public function finalValidate($arrUsers)
     {
-        $this->register->insertUser($arrUsers);
+        if (count($this->getErr()) > 0) {
+            $arrResponse = [
+                "return" => "err",
+                "errs" => $this->getErr()
+            ];
+        } else {
+            $arrResponse = [
+                "return" => "success",
+                "errs" => null
+            ];
+            $this->register->insertUser($arrUsers);
+        }
+        
+        return json_encode($arrResponse);
+    }
+
+    #check attempt
+    public function checkLoginAttempt()
+    {
+        if ($this->login->countAttempt() >= 5) {
+            $this->setErr("Você fez 5 ou mais tentativas");
+            $this->attempts = true;
+            return false;
+        } else {
+            $this->attempts = false;
+            return true;
+        }
+    }
+
+    #email confirmation
+    public function validateUserActivation()
+    {
+        
+    }
+
+    #return attempt
+    public function finalValidateLogin($email)
+    {
+        if (count($this->getErr()) > 0) {
+            $this->login->insertAttempt();
+        } else {
+            $this->login->deleteAttempt();
+        }
     }
 }

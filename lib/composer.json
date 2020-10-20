@@ -7,7 +7,9 @@
             "email": "jefersonfs@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "bjeavons/zxcvbn-php": "^1.0"
+    },
     "autoload": {
         "psr-4": {
             "Classes\\": "../classes/",

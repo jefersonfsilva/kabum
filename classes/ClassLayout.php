@@ -21,7 +21,9 @@ class ClassLayout {
     # set footer tags
     public static function setFooter()
     {
-        $html = "</body>\n";
+        $html = "<script src='".DIRPAGE."lib/js/zepto.min.js'></script>\n";
+        $html .= "<script src='".DIRPAGE."lib/js/javascript.js'></script>\n";
+        $html .= "</body>\n";
         $html .= "</html>";
         echo $html;
     }
