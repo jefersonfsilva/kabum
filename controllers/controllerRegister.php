@@ -1,4 +1,5 @@
 <?php
+//unset($_SESSION['msgErr']);
 $validate = new Classes\ClassValidate();
 
 $validate->validateFields($_POST);
@@ -8,4 +9,10 @@ $validate->validateDate($dataNascimento);
 $validate->validateCpf($cpf);
 $validate->validateConfPass($senha, $senhaConf);
 $validate->validateStrongPass($senha);
-$validate->finalValidate($arrUsers);
+$arrErr = $validate->finalValidate($arrUsers);
+
+/* foreach ($arrErr as $err) {
+    $erros .= $err['errs'];
+}
+$_SESSION['msgErr'] = $erros;
+var_dump($_SESSION['msgErr']); */

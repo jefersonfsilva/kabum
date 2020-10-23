@@ -6,7 +6,15 @@
 
     <h3>Cadastro de Usuários</h3>
 
-    <div name="returnCad" id="returnCad"></div>
+    <?php
+    if (isset($_SESSION['msgErr'])) {
+    ?>
+        <div class="alert alert-danger" role="alert">
+            <?= $_SESSION['msgErr']; ?>
+        </div>
+    <?php
+    }
+    ?>
 
     <form name="formRegister" id="formRegister" action="<?= DIRPAGE.'controllers/controllerRegister'; ?>" method="post" class="mt-5">
         <div class="form-row">
