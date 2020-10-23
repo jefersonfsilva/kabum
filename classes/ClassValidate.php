@@ -2,6 +2,7 @@
 namespace Classes;
 
 use Models\ClassRegister;
+use Models\ClassClient;
 use Models\ClassLogin;
 use ZxcvbnPhp\Zxcvbn;
 use Classes\ClassPassword;
@@ -10,15 +11,19 @@ class ClassValidate {
 
     private $err = [];
     private $register;
+    private $client;
     private $password;
     private $login;
     private $attempts;
+    private $session;
 
     public function __construct()
     {
         $this->register = new ClassRegister();
+        $this->client = new ClassClient();
         $this->password = new ClassPassword();
         $this->login = new ClassLogin();
+        $this->session = new ClassSession();
     }
 
     public function getErr()
@@ -148,7 +153,7 @@ class ClassValidate {
         }
     }
 
-    #check if it is a goos password
+    #check if it is a good password
     public function validateStrongPass($senha, $par = null)
     {
         $zxcvbn = new Zxcvbn();
@@ -177,7 +182,7 @@ class ClassValidate {
         }
     }
 
-    public function finalValidate($arrUsers)
+    public function finalValidate($arr)
     {
         if (count($this->getErr()) > 0) {
             $arrResponse = [
@@ -189,10 +194,64 @@ class ClassValidate {
                 "return" => "success",
                 "errs" => null
             ];
-            $this->register->insertUser($arrUsers);
+            $this->register->insertUser($arr);
         }
         
         return json_encode($arrResponse);
+    }
+
+    public function finalValidateClient($arr)
+    {
+        if (count($this->getErr()) > 0) {
+            $response = [
+                "return" => "err",
+                "errs" => $this->getErr()
+            ];
+        } else {
+            $response = [
+                "return" => "success",
+                "errs" => "none"
+            ];
+            $this->client->insertClient($arr);
+        }
+        
+        return json_encode($response);
+    }
+
+    public function validateUpdateClient($arrPost)
+    {
+        if (count($this->getErr()) > 0 && !isset($arrPost)) {
+            $response = [
+                "return" => "err",
+                "errs" => $this->getErr()
+            ];
+        } else {
+            $response = [
+                "return" => "success"
+            ];
+            $this->client->updateClient($arrPost);
+        }
+             
+        return json_encode($response);
+    }
+
+    public function validateDeleteClient($id)
+    {
+        if ($this->client->getClientById($id)) {
+            $response = [
+                "return" => "success",
+                "errs" => "none"
+            ];
+            $this->client->deleteClient($id);
+            header('Location: '.DIRPAGE.'/areaRestrita');
+        } else {
+            $response = [
+                "return" => "err",
+                "errs" => "Cliente não existe"
+            ];
+        }
+        
+        return json_encode($response);
     }
 
     #check attempt
@@ -209,9 +268,20 @@ class ClassValidate {
     }
 
     #email confirmation
-    public function validateUserActivation()
+    public function validateUserActivation($email)
     {
-        
+        $user = $this->login->getUserData($email);
+
+        if ($user['data']["situacao"] == "confirmation") {
+            if (strtotime($user["data"]["dataCriacao"]) <= strtotime(date("Y-m-d H:i:s"))-432000) {//5 days
+                $this->setErr("Ative seu cadastro pelo link do email");
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
     }
 
     #return attempt
@@ -221,6 +291,7 @@ class ClassValidate {
             $this->login->insertAttempt();
         } else {
             $this->login->deleteAttempt();
+            $this->session->setSession($email);
         }
     }
 }

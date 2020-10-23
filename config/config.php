@@ -17,3 +17,6 @@ define('HOST', "localhost");
 define('DB', "kabum");
 define('USER', "root");
 define('PASS', "@iphone#xr");
+
+# Others
+define("DOMAIN", $_SERVER["HTTP_HOST"]);

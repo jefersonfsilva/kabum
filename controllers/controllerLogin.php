@@ -6,7 +6,7 @@ $validate->validateEmail($email);
 $validate->validateIssetEmail($email, "login");
 $validate->validateStrongPass($senha);
 $validate->validatePass($email, $senha);
+$validate->validateUserActivation($email);
 $validate->checkLoginAttempt();
 $validate->finalValidateLogin($email);
-
-var_dump($validate->getErr());
+echo "<script>window.location.href='".DIRPAGE."areaRestrita';</script>";

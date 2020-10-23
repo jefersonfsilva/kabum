@@ -1,45 +1,4 @@
-/* Basic */
-*{
-    margin: 0; 
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-a{ text-decoration: none; color: #333; }
-a:hover{ opacity: 0.8; }
-
-
-/* Helpers */
-.float { float: left; }
-.w100 { width: 100%; }
-.h40 { height: 40px; }
-.txal { text-align: center; }
-
-
-/* General */
-input[type='email'],input[type='password']{
-    margin: 15px 0;
-    border: 1px solid #bbb;
-    border-radius: 2px;
-    font-size: 16px;
-    padding: 0 10px;
-}
-
-input[type='submit']{
-    width: 30%;
-    background: cornflowerblue;
-    font-weight: bold;
-    color: #fff;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-}
-
-input[type='submit']:hover{
-    opacity: 0.8;
-}
-
+/* Login */
 .bg {
     position: absolute;
     top: 0;
@@ -61,13 +20,6 @@ input[type='submit']:hover{
     padding: 30px;
     
 }
-
-.loginTextos {
-    width: 70%;
-    font-weight: bold;
-    line-height: 40px;
-}
-
 
 /* Extra small */
 @media screen and (max-width: 480px){

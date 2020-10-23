@@ -3,6 +3,38 @@ namespace Models;
 
 class ClassRegister extends ClassCrud{
 
+    #return all user data
+    public function getAllUser()
+    {
+        $b = $this->selectAllDB(
+            "users",
+            array()
+        );
+        $f = $b->fetchAll(\PDO::FETCH_ASSOC);
+        return $arrData = [
+            "data" => $f
+        ];
+    }
+
+    #return user data
+    public function getUserData($email)
+    {
+        $b = $this->selectDB(
+            "*",
+            "users",
+            "where email = ?",
+            array(
+                $email
+            )
+        );
+        $f = $b->fetch(\PDO::FETCH_ASSOC);
+        $r = $b->rowCount();
+        return $arrData = [
+            "data" => $f,
+            "rows" => $r
+        ];
+    }
+
     public function insertUser($arrUsers)
     {
         $this->insertDB(

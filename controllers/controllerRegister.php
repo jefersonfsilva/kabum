@@ -8,4 +8,4 @@ $validate->validateDate($dataNascimento);
 $validate->validateCpf($cpf);
 $validate->validateConfPass($senha, $senhaConf);
 $validate->validateStrongPass($senha);
-echo $validate->finalValidate($arrUsers);
+$validate->finalValidate($arrUsers);

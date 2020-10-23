@@ -18,7 +18,7 @@ class ClassLogin extends ClassCrud{
     public function getUserData($email)
     {
         $b = $this->selectDB(
-            "email, senha",
+            "*",
             "users",
             "where email = ?",
             array(

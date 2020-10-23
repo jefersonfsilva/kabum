@@ -1,21 +1,45 @@
-<?= \Classes\ClassLayout::setHeader('Cadastro'); ?>
+<?= \Classes\ClassLayout::setHeaderRestrict(); ?>
 
-    <div class="float w100 center">
-        Cadastro de Usuários
-    </div>
+<?= \Classes\ClassLayout::setHeader('Cadastro de Usuários'); ?>
 
-    <div class="returnCad"></div>
+<?= \Classes\ClassLayout::setBody(); ?>
 
-    <form namespace="formRegister" id="formRegister" action="<?= DIRPAGE.'controllers/controllerRegister'; ?>" method="post">
-        <div class="register float center">
-            <input class="float w100 h40" type="text" id="nome" name="nome" placeholder="Nome" required>
-            <input class="float w100 h40" type="email" id="email" name="email" placeholder="Email" required>
-            <input class="float w100 h40" type="text" id="cpf" name="cpf" placeholder="CPF" required>
-            <input class="float w100 h40" type="text" id="dataNascimento" name="dataNascimento" placeholder="Data de nascimento" required>
-            <input class="float w100 h40" type="password" id="senha" name="senha" placeholder="Senha" required>
-            <input class="float w100 h40" type="password" id="senhaConf" name="senhaConf" placeholder="Confirmação de Senha" required>
-            <input class="h40" type="submit" value="Cadastrar">
+    <h3>Cadastro de Usuários</h3>
+
+    <div name="returnCad" id="returnCad"></div>
+
+    <form name="formRegister" id="formRegister" action="<?= DIRPAGE.'controllers/controllerRegister'; ?>" method="post" class="mt-5">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label class="float-left" for="nome">Nome</label>
+                <input class="form-control" type="text" id="nome" name="nome" placeholder="Nome" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="float-left" for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
+            </div>
         </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label class="float-left" for="cpf">CPF</label>
+                <input class="form-control" type="text" id="cpf" name="cpf" placeholder="CPF" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="float-left" for="dataNascimento">Data Nascimento</label>
+                <input class="form-control" type="text" id="dataNascimento" name="dataNascimento" placeholder="Data de nascimento" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label class="float-left" for="senha">Senha</label>
+                <input class="form-control" type="password" id="senha" name="senha" placeholder="Senha" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="float-left" for="senha">Confirmação de Senha</label>
+                <input class="form-control" type="password" id="senhaConf" name="senhaConf" placeholder="Confirmação de Senha" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary float-left">Cadastrar</button>
     </form>
 
 <?= \Classes\ClassLayout::setFooter(); ?>

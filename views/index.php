@@ -1,7 +1,13 @@
 <?= \Classes\ClassLayout::setHeader('Homepage'); ?>
 
-    <h1>Gerenciador de Clientes</h1>
-    <a href="<?= DIRPAGE.'cadastro'; ?>" class="href">Cadastro</a>
-    <a href="<?= DIRPAGE.'login'; ?>" class="href">Login</a>
+<?= \Classes\ClassLayout::setBody(); ?>
+
+<h1>Gerenciador de Clientes</h1>
+
+<div class="mt-5">
+    <a href="https://www.kabum.com.br/" class="href" target="_blank">
+        <img src="<?= DIRPAGE.'/img/logo_kabum_.png'; ?>" alt="Logo Kabum">
+    </a>
+</div>
 
 <?= \Classes\ClassLayout::setFooter(); ?>
